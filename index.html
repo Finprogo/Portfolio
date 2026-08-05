@@ -3,10 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Reserve Note — Raghav</title>
-<meta name="description" content="Valuation notes, research, and history with opinions. Everything downloadable.">
+<title>The Reserve Note — valuation notes &amp; research by Raghav</title>
+<meta name="description" content="Independent equity valuation notes, research and market history. Reliance, Axis Bank, Divi's, Adani, Concord Biotech and more — free to download.">
+<link rel="canonical" href="https://thereservenote.com/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Raghav">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thereservenote.com/">
+<meta property="og:title" content="The Reserve Note — valuation notes &amp; research">
+<meta property="og:description" content="Independent equity valuation notes, research and market history. Everything downloadable.">
+<meta property="og:image" content="https://thereservenote.com/assets/img-1.png">
+<meta property="og:site_name" content="The Reserve Note">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Reserve Note — valuation notes &amp; research">
+<meta name="twitter:description" content="Independent equity valuation notes, research and market history. Everything downloadable.">
+<meta name="twitter:image" content="https://thereservenote.com/assets/img-1.png">
+
+<link rel="icon" type="image/png" href="assets/img-1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "The Reserve Note",
+  "url": "https://thereservenote.com/",
+  "description": "Independent equity valuation notes, research and market history.",
+  "author": { "@type": "Person", "name": "Raghav" }
+}
+</script>
 </head>
 <body>
 <style>
@@ -966,19 +994,44 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 
   // ---- view switching with sweep ----
   var sweep = document.getElementById('rgv-sweep');
-  function go(toId) {
+  var ROUTES = { 'view-home':'', 'view-arch':'valuations', 'view-res':'research',
+                 'view-hist':'history', 'view-life':'life', 'view-hello':'hello' };
+  var FROM_HASH = {};
+  for (var k in ROUTES) { FROM_HASH[ROUTES[k]] = k; }
+
+  function paint(toId) {
+    document.querySelectorAll('.rgv-view').forEach(function(v){ v.classList.remove('rgv-active'); });
+    var el = document.getElementById(toId) || document.getElementById('view-home');
+    el.classList.add('rgv-active');
+    window.scrollTo(0, 0);
+    el.querySelectorAll('.rgv-anim').forEach(function(x){ x.classList.remove('rgv-in'); io.observe(x); });
+  }
+
+  function go(toId, skipPush) {
     sweep.className = 'rgv-sweep rgv-up';
     setTimeout(function () {
-      document.querySelectorAll('.rgv-view').forEach(function(v){ v.classList.remove('rgv-active'); });
-      document.getElementById(toId).classList.add('rgv-active');
-      window.scrollTo(0, 0);
-      document.querySelectorAll('#' + toId + ' .rgv-anim').forEach(function(el){
-        el.classList.remove('rgv-in'); io.observe(el);
-      });
+      paint(toId);
+      if (!skipPush) {
+        var slug = ROUTES[toId] || '';
+        history.pushState({ view: toId }, '', slug ? '#' + slug : location.pathname);
+      }
       sweep.className = 'rgv-sweep rgv-off';
       setTimeout(function(){ sweep.className = 'rgv-sweep'; }, 560);
     }, 540);
   }
+
+  window.addEventListener('popstate', function (e) {
+    var id = (e.state && e.state.view) || FROM_HASH[location.hash.replace('#','')] || 'view-home';
+    go(id, true);
+  });
+
+  // deep link on first load
+  (function () {
+    var slug = location.hash.replace('#','');
+    if (slug && FROM_HASH[slug]) { paint(FROM_HASH[slug]); history.replaceState({ view: FROM_HASH[slug] }, '', '#' + slug); }
+    else { history.replaceState({ view: 'view-home' }, '', location.pathname); }
+  })();
+
   var VIEWS = ['view-arch','view-res','view-hist','view-life'];
   document.querySelectorAll('.rgv-card').forEach(function (c, i) {
     c.addEventListener('click', function(){ go(VIEWS[i]); });

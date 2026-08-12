@@ -35,6 +35,10 @@
   "author": { "@type": "Person", "name": "Raghav" }
 }
 </script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "90457a2123a74a03a2a401327035b594"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </head>
 <body>
 <style>
@@ -372,6 +376,28 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 
 .rgv-num-meta .rgv-dl { font-size:10px; padding:4px 9px; vertical-align:middle; }
 .rgv-num-item .rgv-dl:hover { background:var(--ink); color:var(--cream); }
+
+.rgv-replink { display:block; text-decoration:none; color:var(--ink); position:relative; }
+.rgv-replink::after { content:" \2192"; font-size:0.7em; opacity:0; transition:opacity .2s, transform .2s;
+  display:inline-block; }
+.rgv-rep:hover .rgv-replink::after { opacity:.7; transform:translateX(3px); }
+
+/* start-here path */
+.rgv-path { counter-reset:step; margin-top:30px; }
+.rgv-step { position:relative; padding:0 0 34px 56px; }
+.rgv-step::before { counter-increment:step; content:counter(step);
+  position:absolute; left:0; top:-2px; width:38px; height:38px; border-radius:50%;
+  border:2px solid var(--ink); background:var(--yellow); display:grid; place-items:center;
+  font-family:var(--display); font-weight:800; font-size:17px; }
+.rgv-step::after { content:""; position:absolute; left:18px; top:40px; bottom:6px; width:2px;
+  background:repeating-linear-gradient(var(--ink) 0 6px, transparent 6px 12px); }
+.rgv-step:last-child::after { display:none; }
+.rgv-step h3 { font-size:clamp(1.05rem,2.3vw,1.35rem); font-weight:600; letter-spacing:-0.01em; }
+.rgv-step p { font-size:14.5px; line-height:1.6; opacity:.78; margin-top:8px; max-width:60ch; }
+.rgv-step .rgv-dl { margin-top:12px; }
+.rgv-try { background:var(--mint); border:1px solid var(--ink); border-radius:8px;
+  padding:12px 14px; margin-top:12px; font-size:13.5px; line-height:1.55; max-width:60ch; }
+.rgv-try b { font-weight:600; }
 </style>
 
 <div class="rgv-sweep" id="rgv-sweep"></div>
@@ -387,7 +413,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
       </span>
     </div>
     <div class="rgv-links">
-      <span>Valuations</span><span>Research</span><span>History</span><span>Project Finance</span><span>Life</span>
+      <span>Valuations</span><span>Research</span><span>History</span><span>Start Here</span><span>Project Finance</span><span>Life</span>
     </div>
     <button class="rgv-navcta">Say Hello</button>
   </nav>
@@ -410,7 +436,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
         Same job, really: hold your position, watch everything, don&rsquo;t chase the ball.
       </p>
       <div class="rgv-actions rgv-anim" data-delay="850">
-        <button class="rgv-btn">&rarr; Start here</button>
+        <button class="rgv-btn" id="rgv-starthere">&rarr; Start here</button>
         <button class="rgv-btn rgv-btn-ghost">See everything</button>
       </div>
     </div>
@@ -536,7 +562,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-energy">Energy</span>
           <span class="rgv-verdict v-up">+20.9%</span>
         </div>
-        <div class="rgv-rep-co">Reliance Industries</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/reliance-industries.html">Reliance Industries</a>
         <div class="rgv-rep-title">Three good businesses, one cyclical one, and a holding structure the market has stopped paying for</div>
         <div class="rgv-rep-sum">Not a bet on any one segment being mispriced &mdash; a bet that the conglomerate wrapper dissolves. Jio&rsquo;s DRHP is filed. That&rsquo;s the catalyst.</div>
         <div class="rgv-pxrow">
@@ -554,7 +580,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-health">Healthcare</span>
           <span class="rgv-verdict v-up">+15.5%</span>
         </div>
-        <div class="rgv-rep-co">IKS Health</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/iks-health.html">IKS Health</a>
         <div class="rgv-rep-title">The chore-taker becomes the system of record</div>
         <div class="rgv-rep-sum">The TruBridge deal doubles revenue and buys the EHR its AI agents will live inside. It also takes net cash to 2.8x EBITDA. Both things are true.</div>
         <div class="rgv-pxrow">
@@ -572,7 +598,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-fin">Financials</span>
           <span class="rgv-verdict v-up">+11.0%</span>
         </div>
-        <div class="rgv-rep-co">Axis Bank</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/axis-bank.html">Axis Bank</a>
         <div class="rgv-rep-title">The cheapest of the big four &mdash; and priced for a margin recovery it hasn&rsquo;t delivered</div>
         <div class="rgv-rep-sum">The discount is largely earned, not anomalous. The return comes from book compounding at ~14.5%, not a re-rating. I size the position accordingly.</div>
         <div class="rgv-pxrow">
@@ -590,7 +616,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-ind">Industrials</span>
           <span class="rgv-verdict v-flat">+0.6%</span>
         </div>
-        <div class="rgv-rep-co">Unimech Aerospace</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/unimech-aerospace.html">Unimech Aerospace</a>
         <div class="rgv-rep-title">A genuinely good business, in a genuinely good sector, at a price that already assumes the ending</div>
         <div class="rgv-rep-sum">One of the more durable moats in Indian small-cap manufacturing. At 95x trailing, what it doesn&rsquo;t have is a margin of safety.</div>
         <div class="rgv-pxrow">
@@ -608,7 +634,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-health">Healthcare</span>
           <span class="rgv-verdict v-flat">&minus;1.2%</span>
         </div>
-        <div class="rgv-rep-co">Concord Biotech</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/concord-biotech.html">Concord Biotech</a>
         <div class="rgv-rep-title">A genuine moat, priced as though the moat were also a growth engine</div>
         <div class="rgv-rep-sum">I admire this business and the verdict is one I don&rsquo;t enjoy giving. 50x trailing for an end-market growing mid-single digits. My DCF says &#8377;552.</div>
         <div class="rgv-pxrow">
@@ -626,7 +652,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-div">Diversified</span>
           <span class="rgv-verdict v-down">&minus;7.0%</span>
         </div>
-        <div class="rgv-rep-co">Adani Enterprises</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/adani-enterprises.html">Adani Enterprises</a>
         <div class="rgv-rep-title">The incubator has done the hard part. The price now assumes the harvest</div>
         <div class="rgv-rep-sum">Six platforms built, six released. FY26 was the crossover year. My caution is about price, not quality &mdash; I&rsquo;d buy the franchise below &#8377;2,600.</div>
         <div class="rgv-pxrow">
@@ -644,7 +670,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-cons">Consumer</span>
           <span class="rgv-verdict v-down">&minus;12.2%</span>
         </div>
-        <div class="rgv-rep-co">Urban Company</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/urban-company.html">Urban Company</a>
         <div class="rgv-rep-title">A great franchise at a price that already knows it</div>
         <div class="rgv-rep-sum">I rate the business highly. I do not rate the share price highly. The equity is underwriting a &#8377;470 Cr-a-year InstaHelp bet it isn&rsquo;t paid to take.</div>
         <div class="rgv-pxrow">
@@ -662,7 +688,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-health">Healthcare</span>
           <span class="rgv-verdict v-down">&minus;17.6%</span>
         </div>
-        <div class="rgv-rep-co">Divi&rsquo;s Laboratories</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/divis-laboratories.html">Divi&rsquo;s Laboratories</a>
         <div class="rgv-rep-title">A vertical moat, fully priced</div>
         <div class="rgv-rep-sum">Divi&rsquo;s owns the value-chain steps its competitors import &mdash; real and widening. At 81x trailing with FCF under &#8377;250 Cr for three years, it&rsquo;s in the price. Add below &#8377;6,500.</div>
         <div class="rgv-pxrow">
@@ -680,7 +706,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
           <span class="rgv-rep-tag t-cons">Consumer</span>
           <span class="rgv-verdict v-down">&minus;24.5%</span>
         </div>
-        <div class="rgv-rep-co">ixigo</div>
+        <a class="rgv-rep-co rgv-replink" href="notes/ixigo.html">ixigo</a>
         <div class="rgv-rep-title">An excellent business at a price that requires heroic assumptions</div>
         <div class="rgv-rep-sum">India&rsquo;s clear leader in rail travel, &#8377;18,693 Cr of gross bookings. The business is not the problem; the multiple is.</div>
         <div class="rgv-pxrow">
@@ -1023,6 +1049,49 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
   </div>
 </div>
 
+
+<div class="rgv-view" id="view-start">
+  <button class="rgv-back nav-back"><span>&larr;</span> back home</button>
+  <div class="rgv-archhead"><h1 class="rgv-arch-title">Start<br>Here<svg class="rgv-title-under" viewBox="0 0 280 18" fill="none"><path d="M4 10 C60 4, 120 14, 176 8 C220 4, 250 10, 276 7" stroke="#ffe95c" stroke-width="7" stroke-linecap="round"/><path d="M6 13 C64 8, 126 16, 274 10" stroke="#1a3300" stroke-width="2" stroke-linecap="round" opacity="0.9"/></svg></h1></div>
+  <p class="rgv-arch-sub">Seventeen files is a pile, not a path. If you&rsquo;re starting out,
+  read them in this order &mdash; it&rsquo;s the sequence I&rsquo;d have wanted.</p>
+  <div class="rgv-path">
+    <div class="rgv-step rgv-anim" data-delay="0">
+      <h3>Read the Learning Companion first</h3>
+      <p>It explains why each technique exists before you meet it &mdash; DSCR, IRR, Monte Carlo, tornado charts. Thirty minutes here saves you a week of guessing.</p>
+      
+      <button class="rgv-dl" data-file="fungi-labs-learning-companion.pdf" data-dir="casefiles">&darr; download</button>
+    </div>
+    <div class="rgv-step rgv-anim" data-delay="70">
+      <h3>Open the model on the Assumptions sheet</h3>
+      <p>Don&rsquo;t start at the P&amp;L. Every number downstream is driven from here &mdash; occupancy, ALOS, tariff, cost inflation. Change one and watch what moves.</p>
+      <div class="rgv-try"><b>Try this:</b> drop occupancy from 72% to 60% and watch the DSCR row on sheet 15. The moment it crosses 1.20x, the loan is in technical default. That single number is what a credit committee actually argues about.</div>
+      <button class="rgv-dl" data-file="fungi-labs-financial-model.xlsx" data-dir="casefiles">&darr; download</button>
+    </div>
+    <div class="rgv-step rgv-anim" data-delay="140">
+      <h3>Then read the Feasibility Study</h3>
+      <p>Now that you know how the model works, the reasoning behind the assumptions will land. Why 100 beds and not 60. Why Nashik. Why 33 critical-care beds.</p>
+      
+      <button class="rgv-dl" data-file="fungi-labs-feasibility-study.pdf" data-dir="casefiles">&darr; download</button>
+    </div>
+    <div class="rgv-step rgv-anim" data-delay="210">
+      <h3>Read the Viability report for the honest part</h3>
+      <p>22.13% project IRR sits next to a 26.7% probability of technical default. Both are true. Learning to hold those two facts at once is most of what project finance is.</p>
+      
+      <button class="rgv-dl" data-file="fungi-labs-viability-and-bankability-report.pdf" data-dir="casefiles">&darr; download</button>
+    </div>
+    <div class="rgv-step rgv-anim" data-delay="280">
+      <h3>Now try a valuation note</h3>
+      <p>Different discipline, same habit. Start with Concord Biotech &mdash; it&rsquo;s the clearest example of a good business at a price I couldn&rsquo;t justify, which is the judgement that matters most.</p>
+      <div class="rgv-try"><b>Read it asking:</b> where would I disagree? Every number in there is an assumption you&rsquo;re allowed to reject.</div>
+      <button class="rgv-btn rgv-btn-ghost" style="font-size:13px;padding:9px 16px;margin-top:12px" onclick="location.hash='valuations'">open the notes &rarr;</button>
+    </div>
+  </div>
+  <div class="rgv-note" style="margin-top:34px">None of this is a qualification and none of it is
+  advice. It&rsquo;s the material I wish had been lying around when I started, arranged in the order
+  that would have helped most.</div>
+</div>
+
 <div class="rgv-view" id="view-hello">
   <button class="rgv-back nav-back"><span>&larr;</span> back home</button>
   <h1 class="rgv-arch-title">Say hello,<br>it's free<svg class="rgv-title-under" viewBox="0 0 280 18" fill="none"><path d="M4 10 C60 4, 120 14, 176 8 C220 4, 250 10, 276 7" stroke="#ffe95c" stroke-width="7" stroke-linecap="round"/><path d="M6 13 C64 8, 126 16, 274 10" stroke="#1a3300" stroke-width="2" stroke-linecap="round" opacity="0.9"/></svg></h1>
@@ -1078,7 +1147,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
   // ---- view switching with sweep ----
   var sweep = document.getElementById('rgv-sweep');
   var ROUTES = { 'view-home':'', 'view-arch':'valuations', 'view-res':'research',
-                 'view-hist':'history', 'view-life':'life', 'view-case':'casefiles', 'view-hello':'hello' };
+                 'view-hist':'history', 'view-life':'life', 'view-case':'casefiles', 'view-start':'start', 'view-hello':'hello' };
   var FROM_HASH = {};
   for (var k in ROUTES) { FROM_HASH[ROUTES[k]] = k; }
 
@@ -1140,7 +1209,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     btn.addEventListener('click', function(){ go('view-home'); });
   });
   var NAVMAP = { 'Valuations':'view-arch', 'Research':'view-res',
-                 'History':'view-hist', 'Project Finance':'view-case', 'Life':'view-life' };
+                 'History':'view-hist', 'Start Here':'view-start', 'Project Finance':'view-case', 'Life':'view-life' };
   document.querySelectorAll('.rgv-links span').forEach(function(s){
     s.addEventListener('click', function(){ go(NAVMAP[s.textContent.trim()]); });
   });
@@ -1150,7 +1219,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
   document.querySelector('.rgv-logo').addEventListener('click', function(){ go('view-home'); });
   document.querySelectorAll('.rgv-btn').forEach(function(b){
     b.addEventListener('click', function(){
-      go(b.textContent.indexOf('Start here') > -1 ? 'view-case' : 'view-arch');
+      go(b.textContent.indexOf('Start here') > -1 ? 'view-start' : 'view-arch');
     });
   });
   document.querySelector('.rgv-hello').addEventListener('click', function(){ go('view-hello'); });

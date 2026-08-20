@@ -398,6 +398,21 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 .rgv-try { background:var(--mint); border:1px solid var(--ink); border-radius:8px;
   padding:12px 14px; margin-top:12px; font-size:13.5px; line-height:1.55; max-width:60ch; }
 .rgv-try b { font-weight:600; }
+
+.rgv-live { display:flex; align-items:flex-start; gap:9px; margin-top:20px; font-size:13.5px;
+  line-height:1.55; font-family:var(--mono); color:var(--ink); opacity:.85;
+  border-left:2px solid var(--yellow); padding-left:12px; max-width:52ch; }
+.rgv-live b { font-weight:500; }
+.rgv-dot { width:8px; height:8px; border-radius:50%; background:#2c6b1f; flex:none; margin-top:6px;
+  box-shadow:0 0 0 0 rgba(44,107,31,.6); animation:rgvPulse 2.4s infinite; }
+@keyframes rgvPulse {
+  0%{box-shadow:0 0 0 0 rgba(44,107,31,.55)}
+  70%{box-shadow:0 0 0 9px rgba(44,107,31,0)}
+  100%{box-shadow:0 0 0 0 rgba(44,107,31,0)}
+}
+@media (prefers-reduced-motion:reduce){ .rgv-dot{ animation:none; } }
+.rgv-updated { font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--whisper);
+  margin-top:14px; }
 </style>
 
 <div class="rgv-sweep" id="rgv-sweep"></div>
@@ -422,7 +437,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     <img class="rgv-float rgv-float-ball" src="assets/img-2.png" alt="">
     <img class="rgv-float rgv-float-coins" src="assets/img-3.png" alt="">
     <div>
-      <span class="rgv-badge rgv-anim" data-delay="120">&#10022; free &middot; no signup &middot; no paywall</span>
+      <span class="rgv-badge rgv-anim" data-delay="120">&#10022; free &middot; no signup &middot; <span id="rgv-lastup">still being written</span></span>
       <h1 class="rgv-h1" id="rgv-headline"></h1>
       <p class="rgv-about rgv-anim" data-delay="700">
         When I started out, everything useful was locked behind a desk I hadn&rsquo;t
@@ -434,6 +449,11 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
       <p class="rgv-about rgv-anim" data-delay="780" style="margin-top:16px;font-size:0.95em;opacity:0.78">
         I manage a PMS strategy on weekdays and play defensive midfield on weekends.
         Same job, really: hold your position, watch everything, don&rsquo;t chase the ball.
+      </p>
+      <p class="rgv-live rgv-anim" data-delay="820">
+        <span class="rgv-dot"></span>
+        <span>This isn&rsquo;t an archive I finished and walked away from &mdash; I add notes as I
+        write them. <b id="rgv-livecount">Latest</b>.</span>
       </p>
       <div class="rgv-actions rgv-anim" data-delay="850">
         <button class="rgv-btn" id="rgv-starthere">&rarr; Start here</button>
@@ -521,6 +541,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
   <section class="rgv-hello rgv-anim">
     <img src="assets/img-9.png" alt="hand-drawn paper airplane">
     <div class="rgv-hello-title">Say hello, it's free</div>
+    <div class="rgv-updated" id="rgv-footup"></div>
     <div class="rgv-hello-sub">kunwarraghavendra001@gmail.com &middot; linkedin</div>
   </section>
 
@@ -548,7 +569,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     <div class="rgv-empty-s">try a company name, a sector, or fewer words</div>
   </div>
   <div class="rgv-filters">
-    <button class="rgv-chip on" data-f="all">All &middot; 9</button>
+    <button class="rgv-chip on" data-f="all">All &middot; 13</button>
     <button class="rgv-chip" data-f="health">Healthcare</button>
     <button class="rgv-chip" data-f="cons">Consumer</button>
     <button class="rgv-chip" data-f="fin">Financials</button>
@@ -557,6 +578,78 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     <button class="rgv-chip" data-f="div">Diversified</button>
   </div>
   <div class="rgv-grid">
+      <div class="rgv-rep rgv-anim" data-sector="ind" data-delay="0">
+        <div class="rgv-rep-top">
+          <span class="rgv-rep-tag t-ind">IT Services</span>
+          <span class="rgv-verdict v-up">+18.5%</span>
+        </div>
+        <a class="rgv-rep-co rgv-replink" href="notes/infosys.html">Infosys</a>
+        <div class="rgv-rep-title">A fifty basis point guidance trim, and a forty percent de-rating</div>
+        <div class="rgv-rep-sum">A 50bp guidance trim and a 40% de-rating. The market isn&rsquo;t pricing the guidance. It&rsquo;s pricing the end of the business model.</div>
+        <div class="rgv-pxrow">
+          <span><b>&#8377;1,030</b><i>price</i></span>
+          <svg viewBox="0 0 34 12" fill="none"><path d="M2 6h26" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M26 2.5l5 3.5-5 3.5" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span><b>&#8377;1,220</b><i>my fair value</i></span>
+        </div>
+        <div class="rgv-rep-foot">
+          <span class="rgv-rep-meta">AUG 2026 · scenario-weighted · INFY</span>
+          <button class="rgv-dl" data-file="infosys-my-view-aug-2026.pdf">&darr; PDF</button>
+        </div>
+      </div>
+      <div class="rgv-rep rgv-anim" data-sector="ind" data-delay="0">
+        <div class="rgv-rep-top">
+          <span class="rgv-rep-tag t-ind">Telecom</span>
+          <span class="rgv-verdict v-up">+18.7%</span>
+        </div>
+        <a class="rgv-rep-co rgv-replink" href="notes/bharti-airtel.html">Bharti Airtel</a>
+        <div class="rgv-rep-title">Earnings are compounding. The share price forgot to.</div>
+        <div class="rgv-rep-sum">Profit up 37% in the June quarter. The stock up 6% in a year. That gap is the case &mdash; and the margin dip everyone fears is why it exists.</div>
+        <div class="rgv-pxrow">
+          <span><b>&#8377;1,970</b><i>price</i></span>
+          <svg viewBox="0 0 34 12" fill="none"><path d="M2 6h26" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M26 2.5l5 3.5-5 3.5" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span><b>&#8377;2,338</b><i>my fair value</i></span>
+        </div>
+        <div class="rgv-rep-foot">
+          <span class="rgv-rep-meta">AUG 2026 · EV/EBITDA + scenarios · BHARTIARTL</span>
+          <button class="rgv-dl" data-file="bharti-airtel-my-view-aug-2026.pdf">&darr; PDF</button>
+        </div>
+      </div>
+      <div class="rgv-rep rgv-anim" data-sector="fin" data-delay="0">
+        <div class="rgv-rep-top">
+          <span class="rgv-rep-tag t-fin">Financials</span>
+          <span class="rgv-verdict v-up">+14.4%</span>
+        </div>
+        <a class="rgv-rep-co rgv-replink" href="notes/itc.html">ITC</a>
+        <div class="rgv-rep-title">A tax quarter is not a broken business</div>
+        <div class="rgv-rep-sum">Down 35% from its high after the first full quarter under a 40% GST regime. The profit fall is real. The conclusion the market drew from it, I think, is wrong.</div>
+        <div class="rgv-pxrow">
+          <span><b>&#8377;277</b><i>price</i></span>
+          <svg viewBox="0 0 34 12" fill="none"><path d="M2 6h26" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M26 2.5l5 3.5-5 3.5" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span><b>&#8377;316</b><i>my fair value</i></span>
+        </div>
+        <div class="rgv-rep-foot">
+          <span class="rgv-rep-meta">AUG 2026 · scenario-weighted · ITC</span>
+          <button class="rgv-dl" data-file="itc-my-view-aug-2026.pdf">&darr; PDF</button>
+        </div>
+      </div>
+      <div class="rgv-rep rgv-anim" data-sector="cons" data-delay="0">
+        <div class="rgv-rep-top">
+          <span class="rgv-rep-tag t-cons">Consumer Internet</span>
+          <span class="rgv-verdict v-up">+15.5%</span>
+        </div>
+        <a class="rgv-rep-co rgv-replink" href="notes/cartrade-tech.html">CarTrade Tech</a>
+        <div class="rgv-rep-title">Everything is priced. I think there's more coming anyway.</div>
+        <div class="rgv-rep-sum">A genuinely excellent business at 60x earnings after a 73% three-month run. Base case says +8%. My conviction says the base case is missing the part that matters.</div>
+        <div class="rgv-pxrow">
+          <span><b>&#8377;2,850</b><i>price</i></span>
+          <svg viewBox="0 0 34 12" fill="none"><path d="M2 6h26" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M26 2.5l5 3.5-5 3.5" stroke="#1a3300" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span><b>&#8377;3,290</b><i>my fair value</i></span>
+        </div>
+        <div class="rgv-rep-foot">
+          <span class="rgv-rep-meta">AUG 2026 · scenario-weighted · CARTRADE</span>
+          <button class="rgv-dl" data-file="cartrade-tech-my-view-aug-2026.pdf">&darr; PDF</button>
+        </div>
+      </div>
       <div class="rgv-rep rgv-anim" data-sector="energy" data-delay="0">
         <div class="rgv-rep-top">
           <span class="rgv-rep-tag t-energy">Energy</span>
@@ -755,28 +848,28 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     </div>
     <div class="rgv-num-item rgv-anim" data-delay="0">
       <div class="rgv-num">02</div>
-      <div><div class="rgv-num-title">Coat-tailing a fund I don't work for</div><div class="rgv-num-desc">Mapped every PPFAS holding against my own screens to see where a good investor and a good process disagree. They disagree more than you'd think.</div>
-      <div class="rgv-num-meta">14 min read · framework</div></div>
+      <div><a class="rgv-num-title rgv-replink" href="research/coat-tailing-a-fund-i-dont-work-for.html" style="text-decoration:none;color:inherit">Coat-tailing a fund I don't work for</a><div class="rgv-num-desc">Mapped every PPFAS holding against my own screens to see where a good investor and a good process disagree. They disagree more than you'd think.</div>
+      <div class="rgv-num-meta">14 min read · framework <button class="rgv-dl" data-file="coat-tailing-a-fund-i-dont-work-for.pdf" style="margin-left:10px">&darr; PDF</button></div></div>
     </div>
     <div class="rgv-num-item rgv-anim" data-delay="70">
       <div class="rgv-num">03</div>
-      <div><div class="rgv-num-title">What a supply shock is actually worth</div><div class="rgv-num-desc">Everyone repriced oil in a week. I wanted to know which part of that was information and which was weather.</div>
-      <div class="rgv-num-meta">11 min read · thematic</div></div>
+      <div><a class="rgv-num-title rgv-replink" href="research/what-a-supply-shock-is-actually-worth.html" style="text-decoration:none;color:inherit">What a supply shock is actually worth</a><div class="rgv-num-desc">Everyone repriced oil in a week. I wanted to know which part of that was information and which was weather.</div>
+      <div class="rgv-num-meta">11 min read · thematic <button class="rgv-dl" data-file="what-a-supply-shock-is-actually-worth.pdf" style="margin-left:10px">&darr; PDF</button></div></div>
     </div>
     <div class="rgv-num-item rgv-anim" data-delay="140">
       <div class="rgv-num">04</div>
-      <div><div class="rgv-num-title">The screen that keeps catching liars</div><div class="rgv-num-desc">Beneish M-Score, applied to 200 Indian mid-caps, and the four it flagged that nobody was talking about.</div>
-      <div class="rgv-num-meta">18 min read · screens</div></div>
+      <div><a class="rgv-num-title rgv-replink" href="research/the-screen-that-keeps-catching-liars.html" style="text-decoration:none;color:inherit">The screen that keeps catching liars</a><div class="rgv-num-desc">Beneish M-Score, applied to 200 Indian mid-caps, and the four it flagged that nobody was talking about.</div>
+      <div class="rgv-num-meta">18 min read · screens <button class="rgv-dl" data-file="the-screen-that-keeps-catching-liars.pdf" style="margin-left:10px">&darr; PDF</button></div></div>
     </div>
     <div class="rgv-num-item rgv-anim" data-delay="210">
       <div class="rgv-num">05</div>
-      <div><div class="rgv-num-title">Owning gold without a story</div><div class="rgv-num-desc">Long-term bullish, badly argued by most people. Here's the version that survives contact with a spreadsheet.</div>
-      <div class="rgv-num-meta">9 min read · thematic</div></div>
+      <div><a class="rgv-num-title rgv-replink" href="research/owning-gold-without-a-story.html" style="text-decoration:none;color:inherit">Owning gold without a story</a><div class="rgv-num-desc">Long-term bullish, badly argued by most people. Here's the version that survives contact with a spreadsheet.</div>
+      <div class="rgv-num-meta">9 min read · thematic <button class="rgv-dl" data-file="owning-gold-without-a-story.pdf" style="margin-left:10px">&darr; PDF</button></div></div>
     </div>
     <div class="rgv-num-item rgv-anim" data-delay="280">
       <div class="rgv-num">06</div>
-      <div><div class="rgv-num-title">Reading a moat without adjectives</div><div class="rgv-num-desc">Every moat framework I could find, reduced to things you can actually count.</div>
-      <div class="rgv-num-meta">16 min read · framework</div></div>
+      <div><a class="rgv-num-title rgv-replink" href="research/reading-a-moat-without-adjectives.html" style="text-decoration:none;color:inherit">Reading a moat without adjectives</a><div class="rgv-num-desc">Every moat framework I could find, reduced to things you can actually count.</div>
+      <div class="rgv-num-meta">16 min read · framework <button class="rgv-dl" data-file="reading-a-moat-without-adjectives.pdf" style="margin-left:10px">&darr; PDF</button></div></div>
     </div>
   </div>
 </div>
@@ -1300,6 +1393,14 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 
   // ---- recent: newest 3 across every section ----
   var ALL = [
+    { d:'2026-08-15', sec:'val', lab:'Valuation', view:'view-arch',
+      t:'Infosys \u2014 A fifty basis point guidance trim, and a forty percent d', m:'IT SERVICES \u00b7 +18.5%' },
+    { d:'2026-08-15', sec:'val', lab:'Valuation', view:'view-arch',
+      t:'Bharti Airtel \u2014 Earnings are compounding. The share price forgot to.', m:'TELECOM \u00b7 +18.7%' },
+    { d:'2026-08-15', sec:'val', lab:'Valuation', view:'view-arch',
+      t:'ITC \u2014 A tax quarter is not a broken business', m:'FINANCIALS \u00b7 +14.4%' },
+    { d:'2026-08-15', sec:'val', lab:'Valuation', view:'view-arch',
+      t:'CarTrade Tech \u2014 everything is priced, I think there\u2019s more coming', m:'CONSUMER INTERNET \u00b7 +15.5%' },
     { d:'2026-08-08', sec:'res', lab:'Project Finance', view:'view-case',
       t:'Fungi Labs Hospital \u2014 a full project financing appraisal', m:'6 DOCUMENTS \u00b7 free' },
     { d:'2026-08-01', sec:'res', lab:'Research', view:'view-res',
@@ -1315,6 +1416,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     { d:'2026-05-11', sec:'res', lab:'Research',  view:'view-res',
       t:'Coat-tailing a fund I don\u2019t work for', m:'FRAMEWORK \u00b7 14 min' }
   ];
+  var TOTAL = 25;
   var MON = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   var list = document.getElementById('rgv-recent-list');
   ALL.sort(function(a,b){ return a.d < b.d ? 1 : -1; });
@@ -1331,7 +1433,30 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     list.appendChild(row);
     io.observe(row);
   });
-  document.getElementById('rgv-recent-count').textContent = '3 of 17 pieces';
+  document.getElementById('rgv-recent-count').textContent = '3 of ' + TOTAL + ' pieces';
+
+  // ---- self-maintaining "last updated" ----
+  (function () {
+    var newest = ALL[0];
+    var dt = new Date(newest.d);
+    var MONF = ['January','February','March','April','May','June','July',
+                'August','September','October','November','December'];
+    var pretty = dt.getDate() + ' ' + MONF[dt.getMonth()] + ' ' + dt.getFullYear();
+    var days = Math.floor((Date.now() - dt.getTime()) / 86400000);
+    var rel = days <= 0 ? 'today' : days === 1 ? 'yesterday'
+            : days < 14 ? days + ' days ago'
+            : days < 60 ? Math.round(days/7) + ' weeks ago'
+            : Math.round(days/30) + ' months ago';
+
+    var badge = document.getElementById('rgv-lastup');
+    if (badge) badge.textContent = 'updated ' + rel;
+
+    var live = document.getElementById('rgv-livecount');
+    if (live) live.textContent = 'Last one went up ' + rel + ' (' + pretty + ')';
+
+    var foot = document.getElementById('rgv-footup');
+    if (foot) foot.textContent = 'Last updated ' + pretty + ' \u00b7 ' + TOTAL + ' pieces and counting';
+  })();
 
 
   // ---- filters ----

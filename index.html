@@ -46,6 +46,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --ink:#1a3300; --yellow:#ffe95c; --cream:#fcfaf5; --pencil:#b6b6b6;
+  --board:#f1ebdc; --paper:#fffdf7;
   --whisper:#8d8d8d; --teal:#a8e5e5; --mint:#d5f5c2; --blush:#f6d0ff;
   --display:'Bricolage Grotesque',sans-serif; --body:'Inter',system-ui,sans-serif;
   --mono:'Roboto Mono',monospace;
@@ -274,6 +275,72 @@
   transform:rotate(7deg); pointer-events:none; }
 .rgv-tile.wide { grid-column:span 1; }
 @media (min-width:640px){ .rgv-tile.wide{ grid-column:span 2; } }
+
+/* life: board pack (deadpan un-dashboard, pinned) */
+.rgv-strip{ margin:26px 0 8px; border:1.5px solid var(--ink); border-radius:12px;
+  background:var(--paper); display:grid; grid-template-columns:repeat(4,1fr); overflow:hidden; }
+.rgv-strip > div{ padding:14px 16px; border-right:1px solid var(--pencil); }
+.rgv-strip > div:last-child{ border-right:none; }
+.rgv-strip .k{ font-family:var(--mono); font-size:10px; letter-spacing:0.09em;
+  text-transform:uppercase; opacity:0.6; }
+.rgv-strip .v{ font-family:var(--display); font-weight:800; font-size:clamp(1.1rem,3vw,1.7rem);
+  line-height:1.05; margin-top:5px; }
+.rgv-strip .v small{ font-family:var(--mono); font-weight:400; font-size:11px; opacity:0.6;
+  display:block; margin-top:3px; letter-spacing:0.03em; }
+@media(max-width:640px){ .rgv-strip{ grid-template-columns:1fr 1fr; }
+  .rgv-strip > div:nth-child(2){ border-right:none; }
+  .rgv-strip > div:nth-child(1),.rgv-strip > div:nth-child(2){ border-bottom:1px solid var(--pencil); } }
+.rgv-board{ margin-top:22px; padding:26px 22px 14px; border-radius:16px;
+  background:radial-gradient(circle at 1px 1px, rgba(26,51,0,0.05) 1px, transparent 0) 0 0/16px 16px, var(--board);
+  border:1.5px solid var(--pencil); box-shadow:inset 0 2px 14px rgba(26,51,0,0.06); }
+.rgv-boardlab{ font-family:var(--mono); font-size:10.5px; letter-spacing:0.1em;
+  text-transform:uppercase; opacity:0.5; margin:0 4px 16px; }
+.rgv-pingrid{ columns:1; column-gap:20px; }
+@media(min-width:600px){ .rgv-pingrid{ columns:2; } }
+@media(min-width:980px){ .rgv-pingrid{ columns:3; } }
+.rgv-pinwrap{ break-inside:avoid; margin:0 0 20px; }
+.rgv-pin{ position:relative; background:var(--paper); border:1.4px solid var(--ink);
+  border-radius:10px; padding:20px 18px 18px; box-shadow:2px 5px 0 rgba(26,51,0,0.09);
+  transition:transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease; }
+.rgv-pin.r1{ transform:rotate(-1.4deg); }
+.rgv-pin.r2{ transform:rotate(1deg); }
+.rgv-pin.r3{ transform:rotate(0.6deg); }
+.rgv-pin:hover{ transform:translateY(-4px) rotate(0deg); box-shadow:2px 10px 0 rgba(26,51,0,0.12); }
+.rgv-pin.mint{ background:var(--mint); } .rgv-pin.teal{ background:var(--teal); }
+.rgv-pin.blush{ background:var(--blush); } .rgv-pin.yel{ background:var(--yellow); }
+.rgv-pintag{ font-family:var(--mono); font-size:9.5px; letter-spacing:0.11em;
+  text-transform:uppercase; opacity:0.6; }
+.rgv-pinbig{ font-family:var(--display); font-weight:800; font-size:clamp(1.7rem,4.5vw,2.5rem);
+  line-height:1; letter-spacing:0.01em; margin:6px 0 2px; }
+.rgv-pinlab{ font-family:var(--mono); font-size:11px; letter-spacing:0.05em; opacity:0.7;
+  text-transform:uppercase; }
+.rgv-pinnote{ font-size:13.5px; line-height:1.55; opacity:0.88; margin-top:11px; }
+.rgv-hl{ background:linear-gradient(transparent 55%, var(--yellow) 55%); padding:0 2px; }
+.rgv-pushpin{ position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+  width:16px; height:16px; border-radius:50%; background:var(--ink);
+  box-shadow:inset -2px -2px 0 rgba(0,0,0,0.18), 0 2px 3px rgba(26,51,0,0.3); }
+.rgv-pushpin.pteal{ background:#3aa0a0; } .rgv-pushpin.pblush{ background:#c25fd8; }
+.rgv-pushpin.pyel{ background:#c9a400; } .rgv-pushpin.pmint{ background:#5aa832; }
+.rgv-tape{ position:absolute; top:-11px; left:18px; width:64px; height:22px;
+  background:rgba(168,229,229,0.72); border:1px dashed rgba(26,51,0,0.25); transform:rotate(-8deg); }
+.rgv-tape.tblush{ background:rgba(246,208,255,0.72); left:auto; right:18px; transform:rotate(7deg); }
+.rgv-kpi{ font-family:var(--mono); font-size:13px; line-height:2; margin-top:12px; }
+.rgv-kpi .n{ font-family:var(--display); font-size:16px; }
+.rgv-kpi .s{ opacity:0.55; font-size:11px; }
+.rgv-donut{ display:block; margin:10px auto 4px; width:118px; height:118px; }
+.rgv-legend{ font-family:var(--mono); font-size:10.5px; letter-spacing:0.02em;
+  display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+.rgv-legend i{ display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:7px;
+  vertical-align:middle; border:1px solid rgba(26,51,0,0.4); font-style:normal; }
+.rgv-spark{ display:block; width:100%; height:64px; margin-top:8px; }
+.rgv-ticket{ border-top:1px dashed rgba(26,51,0,0.4); margin-top:12px; padding-top:10px;
+  font-family:var(--mono); font-size:12px; letter-spacing:0.02em; }
+.rgv-disc2{ margin-top:26px; font-family:var(--mono); font-size:11px; letter-spacing:0.03em;
+  opacity:0.62; line-height:1.65; border-top:1px solid var(--pencil); padding-top:16px; }
+@media(prefers-reduced-motion:reduce){
+  .rgv-pin{ transition:none; }
+  .rgv-pin.r1,.rgv-pin.r2,.rgv-pin.r3{ transform:none; }
+  .rgv-pin:hover{ transform:translateY(-3px); } }
 
 /* hello */
 .rgv-hellobox { border:1px solid var(--ink); border-radius:12px; padding:40px 26px; text-align:center;
@@ -1065,40 +1132,121 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 <div class="rgv-view" id="view-life">
   <button class="rgv-back nav-back"><span>&larr;</span> back home</button>
   <div class="rgv-archhead"><img class="rgv-arch-art" src="assets/img-2.png" alt="" style="width:92px"><h1 class="rgv-arch-title">Life,<br>Unindexed<svg class="rgv-title-under" viewBox="0 0 280 18" fill="none"><path d="M4 10 C60 4, 120 14, 176 8 C220 4, 250 10, 276 7" stroke="#ffe95c" stroke-width="7" stroke-linecap="round"/><path d="M6 13 C64 8, 126 16, 274 10" stroke="#1a3300" stroke-width="2" stroke-linecap="round" opacity="0.9"/></svg></h1></div>
-  <p class="rgv-arch-sub">The parts that don't compound, don't scale, and aren't
-  going in a quarterly review.</p>
-  <div class="rgv-tiles">
-    <div class="rgv-tile wide rgv-anim" style="background:var(--mint)" data-delay="0">
-      <img src="assets/img-4.png" alt="" style="width:150px;opacity:0.9">
-      <div class="rgv-tile-big">Defensive midfield</div>
-      <div class="rgv-tile-lab">weekends &middot; the position nobody thanks you for</div>
-      <div class="rgv-tile-note">Sit deep, read the whole pitch, make the boring pass. It's
-      the same instinct that makes me a patient investor and a slightly annoying teammate.</div>
-    </div>
-    <div class="rgv-tile rgv-anim" style="background:var(--teal)" data-delay="80">
-      <div class="rgv-tile-big">~2 lakh</div>
-      <div class="rgv-tile-lab">minutes of anime watched</div>
-      <div class="rgv-tile-note">I've made peace with this number. Mostly.</div>
-    </div>
-    <div class="rgv-tile rgv-anim" style="background:var(--yellow)" data-delay="160">
-      <img src="assets/img-5.png" alt="" style="width:120px;opacity:0.9">
-      <div class="rgv-tile-big">PS5, PC, phone</div>
-      <div class="rgv-tile-lab">currently: cozy town-builders</div>
-      <div class="rgv-tile-note">Coral Island, Sandrock, Palia. I value companies all
-      week and then go run a fictional farm. Make of that what you will.</div>
-    </div>
-    <div class="rgv-tile rgv-anim" style="background:var(--blush)" data-delay="240">
-      <div class="rgv-tile-big">Badminton</div>
-      <div class="rgv-tile-lab">and the occasional run</div>
-    </div>
-    <div class="rgv-tile wide rgv-anim" style="background:var(--cream)" data-delay="320">
-      <img src="assets/img-6.png" alt="" style="width:90px;opacity:0.95">
-      <div class="rgv-tile-big">Old texts, read slowly</div>
-      <div class="rgv-tile-lab">jyoti&#7779;a &middot; dinacary&#257; &middot; sm&#7771;ti</div>
-      <div class="rgv-tile-note">Same habit as the day job, different library:
-      go to the source, distrust the summary, take your time.</div>
+  <p class="rgv-arch-sub">The one holding I refuse to mark to market. Reviewed never, audited by
+  nobody, and not going in a quarterly review. Rating: permanent.</p>
+
+  <div class="rgv-strip rgv-anim" data-delay="0">
+    <div><div class="k">Rating</div><div class="v">OVERWEIGHT<small>on life, structurally</small></div></div>
+    <div><div class="k">Price</div><div class="v">Priceless<small>refuses to trade</small></div></div>
+    <div><div class="k">Fair value</div><div class="v">N/A<small>model wouldn't converge</small></div></div>
+    <div><div class="k">Implied upside</div><div class="v">&infin;<small>high conviction</small></div></div>
+  </div>
+
+  <div class="rgv-board">
+    <p class="rgv-boardlab">// pinned to the board &middot; unaudited &middot; self-reported</p>
+    <div class="rgv-pingrid">
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="0">
+        <div class="rgv-pin r1">
+          <span class="rgv-pushpin"></span>
+          <div class="rgv-pintag">Key metrics &middot; self-reported</div>
+          <div class="rgv-kpi">
+            <div>Anime watched &nbsp;<span class="n">~2,00,000 min</span> &nbsp;&#9650;<br>
+              <span class="s">guidance: unchanged</span></div>
+            <div style="margin-top:8px">Sleep DSCR &nbsp;<span class="n">0.9&times;</span><br>
+              <span class="s">below covenant &mdash; technical default</span></div>
+            <div style="margin-top:8px">Weekend occupancy &nbsp;<span class="n">104%</span><br>
+              <span class="s">over capacity, as usual</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="60">
+        <div class="rgv-pin mint r2">
+          <span class="rgv-pushpin pmint"></span>
+          <div class="rgv-pintag">Coverage: weekends &middot; rating: HOLD (the line)</div>
+          <div class="rgv-pinbig">Defensive<br>midfield</div>
+          <div class="rgv-pinlab">the position nobody thanks you for</div>
+          <div class="rgv-pinnote">Sit deep, read the whole pitch, make the boring pass. The
+          <span class="rgv-hl">same instinct</span> that makes me a patient investor and a
+          slightly annoying teammate.</div>
+        </div>
+      </div>
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="120">
+        <div class="rgv-pin r3">
+          <span class="rgv-tape"></span>
+          <div class="rgv-pintag">Weekend allocation &middot; unhedged</div>
+          <svg class="rgv-donut" viewBox="0 0 42 42" role="img" aria-label="weekend allocation">
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#e7e2d3" stroke-width="7"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#d5f5c2" stroke-width="7" stroke-dasharray="35 65" stroke-dashoffset="25"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#ffe95c" stroke-width="7" stroke-dasharray="30 70" stroke-dashoffset="-10"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#a8e5e5" stroke-width="7" stroke-dasharray="20 80" stroke-dashoffset="-40"/>
+            <circle cx="21" cy="21" r="15.9" fill="none" stroke="#f6d0ff" stroke-width="7" stroke-dasharray="15 85" stroke-dashoffset="-60"/>
+          </svg>
+          <div class="rgv-legend">
+            <div><i style="background:#d5f5c2"></i>Football &mdash; 35%</div>
+            <div><i style="background:#ffe95c"></i>Fictional farming &mdash; 30%</div>
+            <div><i style="background:#a8e5e5"></i>Old texts &mdash; 20%</div>
+            <div><i style="background:#f6d0ff"></i>Staring at ceiling &mdash; 15%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="180">
+        <div class="rgv-pin teal r1">
+          <span class="rgv-pushpin pteal"></span>
+          <div class="rgv-pintag">Cumulative &middot; does not mean-revert</div>
+          <div class="rgv-pinbig">~2 lakh</div>
+          <div class="rgv-pinlab">minutes of anime watched</div>
+          <svg class="rgv-spark" viewBox="0 0 120 60" fill="none" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M2 56 C25 54, 40 46, 55 40 C72 33, 84 20, 98 12 C108 6, 114 4, 118 3" stroke="#1a3300" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M2 56 C25 54, 40 46, 55 40 C72 33, 84 20, 98 12 C108 6, 114 4, 118 3 L118 60 L2 60 Z" fill="rgba(26,51,0,0.08)"/>
+          </svg>
+          <div class="rgv-pinnote">I've made peace with this number. Mostly.</div>
+        </div>
+      </div>
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="240">
+        <div class="rgv-pin yel r2">
+          <span class="rgv-pushpin pyel"></span>
+          <div class="rgv-pintag">Current positions &middot; conviction: high</div>
+          <div class="rgv-pinbig">Now<br>playing</div>
+          <div class="rgv-ticket"><b>&#9654; PS5 &middot; PC &middot; phone</b><br>Coral Island &middot; Sandrock &middot; Palia</div>
+          <div class="rgv-pinnote">I value companies all week and then go run a fictional farm.
+          Make of that what you will.</div>
+        </div>
+      </div>
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="300">
+        <div class="rgv-pin blush r3">
+          <span class="rgv-tape tblush"></span>
+          <div class="rgv-pintag">Beta to the desk job: negative</div>
+          <div class="rgv-pinbig">Badminton</div>
+          <div class="rgv-pinlab">&amp; the occasional run</div>
+          <div class="rgv-pinnote">The only positions I hold that make me sweat &mdash; a
+          defensive-minded badminton game, and a run when guilt finally beats inertia.</div>
+        </div>
+      </div>
+
+      <div class="rgv-pinwrap rgv-anim" data-delay="360">
+        <div class="rgv-pin r1">
+          <span class="rgv-pushpin"></span>
+          <div class="rgv-pintag">Primary sources only</div>
+          <div class="rgv-pinbig">Old texts,<br>read slowly</div>
+          <div class="rgv-pinlab">jyoti&#7779;a &middot; dinacary&#257; &middot; sm&#7771;ti</div>
+          <div class="rgv-pinnote">Same habit as the day job, different library:
+          <span class="rgv-hl">go to the source</span>, distrust the summary, take your time.</div>
+        </div>
+      </div>
+
     </div>
   </div>
+
+  <p class="rgv-disc2">Disclaimer. This is not investment advice. It is barely life advice. All
+  figures are unaudited, self-reported, and emotionally motivated. Past enjoyment is not indicative
+  of future results. The author holds a long-term position in all of the above and has no intention
+  of closing it.</p>
 </div>
 
 

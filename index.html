@@ -481,6 +481,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 .rgv-updated { font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--whisper);
   margin-top:14px; }
 </style>
+<link rel="stylesheet" href="assets/editorial.css">
 
 <div class="rgv-sweep" id="rgv-sweep"></div>
 <div class="rgv-page"><div class="rgv-wrap">
@@ -490,8 +491,8 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     <div class="rgv-logo">
       <img class="rgv-logomark" src="assets/img-1.png" alt="stash box logo">
       <span class="rgv-wordmark">
-        <span class="wm-l1">Hi! Looks like you found my <span class="wm-hl">stash</span>.</span>
-        <span class="wm-l2"><svg class="wm-arrow" viewBox="0 0 26 14" fill="none"><path d="M2 7 C8 2, 14 12, 23 6" stroke="#1a3300" stroke-width="1.8" stroke-linecap="round"/><path d="M19 3 l5 3 -4 4" stroke="#1a3300" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>don&rsquo;t worry &mdash; it&rsquo;s all downloadable.</span>
+        <span class="wm-l1">The Reserve <span class="wm-hl">Note</span></span>
+        <span class="wm-l2"><svg class="wm-arrow" viewBox="0 0 26 14" fill="none"><path d="M2 7 C8 2, 14 12, 23 6" stroke="#1a3300" stroke-width="1.8" stroke-linecap="round"/><path d="M19 3 l5 3 -4 4" stroke="#1a3300" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Independent thinking. Open notebooks.</span>
       </span>
     </div>
     <div class="rgv-links">
@@ -505,48 +506,29 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     <img class="rgv-float rgv-float-coins" src="assets/img-3.png" alt="">
     <div>
       <span class="rgv-badge rgv-anim" data-delay="120">&#10022; free &middot; no signup &middot; <span id="rgv-lastup">still being written</span></span>
-      <h1 class="rgv-h1" id="rgv-headline"></h1>
-      <p class="rgv-about rgv-anim" data-delay="700">
-        When I started out, everything useful was locked behind a desk I hadn&rsquo;t
-        earned yet &mdash; real models, full appraisals, the actual working files. So
-        I&rsquo;m leaving mine in the open. Valuation notes, a complete project
-        financing pack, a 27-sheet model you can open and break. <em>Free, no login,
-        no catch.</em> Take whatever&rsquo;s useful.
-      </p>
-      <p class="rgv-about rgv-anim" data-delay="780" style="margin-top:16px;font-size:0.95em;opacity:0.78">
-        I manage a PMS strategy on weekdays and play defensive midfield on weekends.
-        Same job, really: hold your position, watch everything, don&rsquo;t chase the ball.
-      </p>
-      <p class="rgv-live rgv-anim" data-delay="820">
-        <span class="rgv-dot"></span>
-        <span>This isn&rsquo;t an archive I finished and walked away from &mdash; I add notes as I
-        write them. <b id="rgv-livecount">Latest</b>.</span>
-      </p>
+      <h1 class="rgv-h1" id="rgv-headline" aria-label="Good research. Open to everyone."></h1>
+      <p class="rgv-about rgv-anim" data-delay="100">I'm Raghav. I research businesses, question prices, and share the working behind the numbers. Explore my valuation notes, research and financial models.</p>
+      <p class="rgv-live rgv-anim" data-delay="150"><span class="rgv-dot"></span><span>Open access. No signup. <b id="rgv-livecount">New notes as I write them.</b></span></p>
       <div class="rgv-actions rgv-anim" data-delay="850">
         <button class="rgv-btn" id="rgv-starthere">&rarr; Start here</button>
-        <button class="rgv-btn rgv-btn-ghost">See everything</button>
+        <button class="rgv-btn rgv-btn-ghost">Browse valuations</button>
       </div>
     </div>
 
-    <div class="rgv-collage rgv-anim" data-delay="1000">
-      <div class="rgv-pin rgv-pin-1">
-        <span class="rgv-pin-label">where I sit</span>
-        <img src="assets/img-4.png" alt="hand-drawn football tactics pitch">
-      </div>
-      <div class="rgv-pin rgv-pin-2">
-        <span class="rgv-pin-label">after hours</span>
-        <img src="assets/img-5.png" alt="hand-drawn game controller and open book">
-      </div>
-      <div class="rgv-pin rgv-pin-3">
-        <span class="rgv-pin-label">old texts</span>
-        <img src="assets/img-6.png" alt="hand-drawn palm leaf manuscript">
-      </div>
-    </div>
+    <aside class="editorial-feature">
+      <div class="feature-top"><span>THE OPEN NOTEBOOK</span><span>01 / FEATURED</span></div>
+      <div class="feature-art"><img src="assets/img-7.png" alt="Hand-drawn financial research illustration"><span class="feature-annotation">The working, not just<br>the conclusion.</span></div>
+      <div class="feature-label">PROJECT FINANCE</div>
+      <h2>From first assumption<br>to final appraisal.</h2>
+      <p>A complete project financing pack, with a 27-sheet model to explore, take apart and learn from.</p>
+      <a href="#casefiles" class="feature-link">Open the project <span aria-hidden="true">↗</span></a>
+      <div class="feature-bottom"><span>27 SHEETS</span><span>FREE TO EXPLORE</span></div>
+    </aside>
   </section>
 
   <section>
     <div class="rgv-sectionhead rgv-anim">
-      <span class="rgv-kicker" style="display:inline-flex;align-items:center;gap:8px"><span class="rgv-scrib" style="width:20px;display:inline-block"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 l3.4 9 9 3.4 -9 3.4 -3.4 9 -3.4-9 -9-3.4 9-3.4 Z" stroke="#1a3300" stroke-width="2.2" stroke-linejoin="round" fill="#ffe95c"/></svg></span> // four doors</span><span class="rgv-kicker">pick one</span>
+      <span class="rgv-kicker" style="display:inline-flex;align-items:center;gap:8px"><span class="rgv-scrib" style="width:20px;display:inline-block"><svg viewBox="0 0 40 40" fill="none"><path d="M20 4 l3.4 9 9 3.4 -9 3.4 -3.4 9 -3.4-9 -9-3.4 9-3.4 Z" stroke="#1a3300" stroke-width="2.2" stroke-linejoin="round" fill="#ffe95c"/></svg></span> Explore the notebook</span><span class="rgv-kicker">Five ways in</span>
     </div>
     <div class="rgv-cards">
       <div class="rgv-card rgv-anim" data-delay="0">
@@ -599,7 +581,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
   <div class="rgv-hr rgv-anim"><svg viewBox="0 0 180 24" fill="none"><path d="M4 14 C18 4, 30 22, 44 12 C58 2, 70 20, 84 12 C98 4, 110 22, 124 12 C138 4, 150 20, 176 10" stroke="#1a3300" stroke-width="2.4" stroke-linecap="round"/></svg></div>
   <section class="rgv-recent">
     <div class="rgv-sectionhead rgv-anim">
-      <span class="rgv-kicker">// most recent</span>
+      <span class="rgv-kicker">Recently published</span>
       <span class="rgv-kicker" id="rgv-recent-count"></span>
     </div>
     <div id="rgv-recent-list"></div>
@@ -1371,9 +1353,7 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var line = [
-    { t: 'Hi,' }, { t: "I'm" }, { t: 'Raghav.' },
-    { t: 'This' }, { t: 'is' }, { t: 'everything' },
-    { t: 'I' }, { t: 'wish', wash: true }, { t: "I'd" }, { t: 'had.' }
+    { t: 'Good' }, { t: 'research.' }, { t: 'Open', wash: true }, { t: 'to' }, { t: 'everyone.' }
   ];
   var h1 = document.getElementById('rgv-headline');
   line.forEach(function (w, i) {
@@ -1429,12 +1409,13 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
       } catch (err) {}
     }
     current = toId;
+    if (reduce) { paint(toId); return; }
     sweep.className = 'rgv-sweep rgv-up';
     setTimeout(function () {
       paint(toId);
       sweep.className = 'rgv-sweep rgv-off';
       setTimeout(function(){ sweep.className = 'rgv-sweep'; }, 560);
-    }, 540);
+    }, 120);
   }
 
   window.addEventListener('popstate', function (e) {
@@ -1460,6 +1441,8 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     }
   })();
 
+  window.addEventListener('hashchange', function(){ go(FROM_HASH[location.hash.slice(1)] || 'view-home', true); });
+
   var VIEWS = ['view-arch','view-res','view-hist','view-life','view-case'];
   document.querySelectorAll('.rgv-card').forEach(function (c, i) {
     c.addEventListener('click', function(){ go(VIEWS[i]); });
@@ -1483,6 +1466,10 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
   });
   document.querySelector('.rgv-hello').addEventListener('click', function(){ go('view-hello'); });
 
+  document.querySelectorAll('.rgv-card, .rgv-links span, .rgv-logo, .rgv-hello').forEach(function(el){
+    el.setAttribute('role','button'); el.tabIndex=0;
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();} });
+  });
   // ---- search ----
   function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
   function mark(el, q) {
@@ -1593,6 +1580,8 @@ mark { background:var(--yellow); color:var(--ink); padding:0 1px; border-radius:
     var row = document.createElement('div');
     row.className = 'rgv-item rgv-anim';
     row.setAttribute('data-delay', i*80);
+    row.setAttribute('role', 'button'); row.tabIndex = 0;
+    row.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); row.click(); } });
     row.innerHTML = '<span class="rgv-item-sec s-'+r.sec+'">'+r.lab+'</span>' +
       '<span class="rgv-item-meta">'+MON[dt.getMonth()]+' '+dt.getFullYear()+' \u00b7 '+r.m+'</span>' +
       '<span class="rgv-item-title">'+r.t+'</span>' +
